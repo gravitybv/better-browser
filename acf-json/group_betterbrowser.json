@@ -1,0 +1,210 @@
+{
+    "key": "group_betterbrowser",
+    "title": "Better Browser",
+    "fields": [
+        {
+            "key": "field_5dfcdb3f9cb34",
+            "label": "Browsers",
+            "name": "browsers",
+            "type": "checkbox",
+            "instructions": "De selectie die je hier maakt bepaald op welke browsers de melding getoond zal worden",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "ie": "Internet Explorer",
+                "edge": "Microsoft Edge",
+                "safari": "Safari",
+                "chrome": "Chrome",
+                "firefox": "Firefox"
+            },
+            "allow_custom": 0,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value",
+            "save_custom": 0
+        },
+        {
+            "key": "field_5e00853d7bb62",
+            "label": "Operators",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5dfcdb3f9cb34",
+                        "operator": "!=empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "<strong>Versie nummers mag je pre-fixen met operators:<\/strong>\r\nchrome: \"~20.1\" \/\/ will match any 20.1.* sub-version\r\nfirefox: \">31\" \/\/ will match 32 or higher version\r\nsafari: \">=22\" \/\/ will match 22 or higher version\r\nie: \"=20.1.1432\" \/\/ will match particular build only\r\n\r\n* Als je niets invult zal elke versie van de browser de melding krijgen.\r\n* vul je alleen een getal in zal die versie en hoger de melding krijgen.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_5e0082476b12f",
+            "label": "IE version",
+            "name": "ie_version",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5dfcdb3f9cb34",
+                        "operator": "==",
+                        "value": "ie"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "v",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5e0082536b130",
+            "label": "Edge version",
+            "name": "edge_version",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5dfcdb3f9cb34",
+                        "operator": "==",
+                        "value": "edge"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "v",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5e008752d1039",
+            "label": "Safari version",
+            "name": "safari_version",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5dfcdb3f9cb34",
+                        "operator": "==",
+                        "value": "safari"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "v",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5e008785d103b",
+            "label": "Chrome version",
+            "name": "chrome_version",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5dfcdb3f9cb34",
+                        "operator": "==",
+                        "value": "chrome"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "v",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5e008799d103c",
+            "label": "Firefox version",
+            "name": "firefox_version",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5dfcdb3f9cb34",
+                        "operator": "==",
+                        "value": "firefox"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "v",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "better-browser-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1577096650
+}
