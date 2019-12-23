@@ -36,7 +36,7 @@ if (!class_exists('BetterBrowser')) {
         public function betterbrowser_enqueue()
         {
             //https://unpkg.com/bowser@2.7.0/es5.js
-            wp_register_script('bowser-js', $this->pluginUrl . '/assets/js/bowser.js', '', '2.7.0', true);
+            wp_register_script('bowser-js', $this->pluginUrl . '/assets/js/bundled.js', '', '2.7.0', true);
             wp_enqueue_script('bowser-js');
 
             wp_register_script('betterbrowser-js', $this->pluginUrl . '/assets/js/betterbrowser.js', 'jQuery', '0.0.2', true);
