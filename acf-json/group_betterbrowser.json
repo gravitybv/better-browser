@@ -30,6 +30,35 @@
             "save_custom": 0
         },
         {
+            "key": "field_5e1331c7b1453",
+            "label": "Links naar supported browsers",
+            "name": "supported_browsers",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "edge": "Microsoft Edge",
+                "safari": "Safari",
+                "chrome": "Chrome",
+                "firefox": "Firefox"
+            },
+            "allow_custom": 0,
+            "default_value": [
+                "chrome",
+                "firefox"
+            ],
+            "layout": "horizontal",
+            "toggle": 0,
+            "return_format": "value",
+            "save_custom": 0
+        },
+        {
             "key": "field_5e00853d7bb62",
             "label": "Operators",
             "name": "",
@@ -206,5 +235,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1578312236
+    "modified": 1578316424
 }

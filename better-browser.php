@@ -2,7 +2,7 @@
 /*
 Plugin Name: Better Browser
 Description: Add front-end notification bar for visitors using IE.
-Version: 0.2.0
+Version: 0.3.0
 Author: Pepijn Nichting
 Text Domain: betterbrowser
 Domain Path: /languages
@@ -105,6 +105,7 @@ if (!class_exists('BetterBrowser')) {
         // Load front-end
         public function betterbrowser_load()
         {
+            $supported_browsers = get_field('supported_browsers', 'options') ?? [];
             $html = '';
             ob_start();
             ?>
@@ -114,24 +115,38 @@ if (!class_exists('BetterBrowser')) {
                 </div>
                 <div class="betterbrowser__expand js-betterbrowser-list">
                     <ul>
+                        <?php if(in_array('chrome', $supported_browsers)): ?>
                         <li id="betterbrowser-chrome">
                             <a href="https://www.google.com/chrome" target="_blank" title="Google Chrome">
                                 <div class="icon"></div>
                                 <span class="browser-name">Google Chrome</span>
                             </a>
                         </li>
+                        <?php endif; ?>
+                        <?php if(in_array('firefox', $supported_browsers)): ?>
                         <li id="betterbrowser-firefox">
                             <a href="https://www.firefox.com/" target="_blank" title="Mozilla Firefox">
                                 <div class="icon"></div>
                                 <span class="browser-name">Mozilla Firefox</span>
                             </a>
                         </li>
+                        <?php endif; ?>
+                        <?php if(in_array('safari', $supported_browsers)): ?>
                         <li id="betterbrowser-safari">
                             <a href="https://www.apple.com/safari/" target="_blank" title="Apple Safari">
                                 <div class="icon"></div>
                                 <span class="browser-name">Apple Safari</span>
                             </a>
                         </li>
+                        <?php endif; ?>
+                        <?php if(in_array('edge', $supported_browsers)): ?>
+                        <li id="betterbrowser-edge">
+                            <a href="https://www.microsoft.com/en-us/windows/microsoft-edge" target="_blank" title="Microsoft Edge">
+                                <div class="icon"></div>
+                                <span class="browser-name">Microsoft Edge</span>
+                            </a>
+                        </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
