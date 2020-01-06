@@ -79,10 +79,10 @@ if (!class_exists('BetterBrowser')) {
             wp_register_script('bowser-js', $this->pluginUrl . '/assets/js/bundled.js', '', '2.7.0', true);
             wp_enqueue_script('bowser-js');
 
-            wp_register_script('betterbrowser-js', $this->pluginUrl . '/assets/js/betterbrowser.js', 'jQuery', '0.0.2', true);
+            wp_register_script('betterbrowser-js', $this->pluginUrl . '/assets/js/betterbrowser.js', 'jQuery', '0.3.0', true);
             wp_enqueue_script('betterbrowser-js');
 
-            wp_register_style('betterbrowser-css', $this->pluginUrl . '/assets/css/betterbrowser.css', '', '0.0.2', 'all');
+            wp_register_style('betterbrowser-css', $this->pluginUrl . '/assets/css/betterbrowser.css', '', '0.3.0', 'all');
             wp_enqueue_style('betterbrowser-css');
         }
 
