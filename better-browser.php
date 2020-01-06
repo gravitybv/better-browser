@@ -2,7 +2,7 @@
 /*
 Plugin Name: Better Browser
 Description: Add front-end notification bar for visitors using IE.
-Version: 0.1.1
+Version: 0.2.0
 Author: Pepijn Nichting
 Text Domain: betterbrowser
 Domain Path: /languages
@@ -23,19 +23,56 @@ if (!class_exists('BetterBrowser')) {
             // Set Plugin URL
             $this->pluginUrl = content_url($this->pluginRelPath);
 
-            // Set browsers array
+            add_filter('acf/settings/load_json', [$this, 'betterbrowser_acf_load_json'], 20); // make sure no get_field() gets called before this hook or else it wont work.
+            add_action('acf/update_field_group', [$this, 'betterbrowser_acf_update_field_group'], 1, 1);
+
+            add_action('init', [$this, 'betterbrowser_add_acf_options_page']);
+
+            // Set browsers array (must be dont after load_json hook)
             $this->browsers = get_field('browsers', 'options');
 
-            add_filter('acf/settings/load_json', array($this, 'betterbrowser_acf_json'), 20);
-            add_action('init', array($this, 'betterbrowser_add_acf_options_page'));
-
             if (!empty($this->browsers)):
-                add_action('wp_enqueue_scripts', array($this, 'betterbrowser_enqueue'));
-                add_action('wp_footer', array($this, 'betterbrowser_load'));
+                add_action('wp_enqueue_scripts', [$this, 'betterbrowser_enqueue']);
+                add_action('wp_footer', [$this, 'betterbrowser_load']);
             endif;
 
         }
 
+        // Add ACF json files for the back-end BetterBrowser settings, this must be done before get_field() gets triggered, hooks are useless afterwards
+        public function betterbrowser_acf_load_json($paths)
+        {
+            //Load plugin acf dir
+            $paths[] = $this->pluginPath . '/acf-json';
+
+            // return
+            return $paths;
+        }
+
+        // Get the current saved group
+        public function betterbrowser_acf_update_field_group($group)
+        {
+            //wp_die($group);
+            $this->current_group_being_saved = $group['key'];
+
+            add_action('acf/settings/save_json', [$this, 'betterbrowser_acf_save_json'], 9999);
+
+            // return
+            return $group;
+        }
+
+        // Save the json file to the plugin folder if this the plugin group
+        public function betterbrowser_acf_save_json($path)
+        {
+            if ($this->current_group_being_saved === 'group_betterbrowser') {
+                //Load plugin acf dir
+                $path = $this->pluginPath . '/acf-json';
+            }
+
+            // return
+            return $path;
+        }
+
+        // Load the required files
         public function betterbrowser_enqueue()
         {
             //https://unpkg.com/bowser@2.7.0/es5.js
@@ -49,17 +86,7 @@ if (!class_exists('BetterBrowser')) {
             wp_enqueue_style('betterbrowser-css');
         }
 
-
-        // Add ACF json files for the back-end BetterBrowser settings, this must be done before get_field() gets triggered, hooks are useless afterwards
-        public function betterbrowser_acf_json($paths)
-        {
-            //Load plugin acf dir
-            $paths[] = $this->pluginPath . '/acf-json';
-
-            // return
-            return $paths;
-        }
-
+        // Add a options page to the admin area
         function betterbrowser_add_acf_options_page()
         {
             if (function_exists('acf_add_options_page')) {
@@ -75,6 +102,7 @@ if (!class_exists('BetterBrowser')) {
             }
         }
 
+        // Load front-end
         public function betterbrowser_load()
         {
             $html = '';
