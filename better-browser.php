@@ -2,7 +2,7 @@
 /*
 Plugin Name: Better Browser
 Description: Add front-end notification bar for visitors using IE.
-Version: 0.1.0
+Version: 0.1.1
 Author: Pepijn Nichting
 Text Domain: betterbrowser
 Domain Path: /languages
@@ -23,13 +23,16 @@ if (!class_exists('BetterBrowser')) {
             // Set Plugin URL
             $this->pluginUrl = content_url($this->pluginRelPath);
 
-            add_action('wp_enqueue_scripts', array($this, 'betterbrowser_enqueue'));
+            // Set browsers array
+            $this->browsers = get_field('browsers', 'options');
 
             add_filter('acf/settings/load_json', array($this, 'betterbrowser_acf_json'), 20);
-
-            add_action('wp_footer', array($this, 'betterbrowser_load'));
-
             add_action('init', array($this, 'betterbrowser_add_acf_options_page'));
+
+            if (!empty($this->browsers)):
+                add_action('wp_enqueue_scripts', array($this, 'betterbrowser_enqueue'));
+                add_action('wp_footer', array($this, 'betterbrowser_load'));
+            endif;
 
         }
 
@@ -106,7 +109,9 @@ if (!class_exists('BetterBrowser')) {
             </div>
 
             <?php
-            $acf_browsers = get_field('browsers', 'options');
+
+            $acf_browsers = $this->browsers;
+
             $browsers = [];
             // Must match shortname list: https://github.com/lancedikson/bowser/blob/master/src/constants.js
             foreach ($acf_browsers as $key => $browser) {
