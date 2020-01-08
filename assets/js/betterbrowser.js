@@ -15,5 +15,20 @@ var isValidBrowser = browser.satisfies(betterBrowser);
 
 console.log(isValidBrowser);
 if(isValidBrowser){
+    betterbrowserOffset('0');
     jQuery('#betterbrowser').show();
+}
+
+function betterbrowserOffset(timeoutTime, pxOffset) {
+  if (!timeoutTime) {
+    timeoutTime = 1000;
+  }
+  setTimeout(function() {
+    if (!pxOffset) {
+      pxOffset = jQuery('#betterbrowser').outerHeight(true);
+    }
+    jQuery('html').css('padding-top', pxOffset);
+    //jQuery('html').animate({'padding-top': pxOffset}, 'slow');
+    //console.log('betterbrowser offset van ' + pxOffset +' is gedaan na:' + timeoutTime);
+  }, timeoutTime);
 }
