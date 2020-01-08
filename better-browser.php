@@ -176,4 +176,11 @@ if (!class_exists('BetterBrowser')) {
     }
 
     new BetterBrowser();
+
+    require('updater.php');
+    $repo = 'ionlinenl/better-browser';             // name of your repository. This is either "<user>/<repo>" or "<team>/<repo>".
+    $bitbucket_username = 'pepijnnichting';         // your personal BitBucket username
+    $bitbucket_app_pass = '98FcvBxa8tbzJPkfCrag';   // the generated app password with read access
+
+    new \BetterBrowser\BitbucketWpUpdater\PluginUpdater(__FILE__, $repo, $bitbucket_username, $bitbucket_app_pass);
 }
