@@ -16,7 +16,8 @@ var isValidBrowser = browser.satisfies(betterBrowser);
 console.log(isValidBrowser);
 if(isValidBrowser){
     betterbrowserOffset('0');
-    jQuery('#betterbrowser').show();
+  jQuery('#betterbrowser').show();
+  jQuery('body').addClass('need-better-browser');
 }
 
 function betterbrowserOffset(timeoutTime, pxOffset) {
