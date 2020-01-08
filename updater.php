@@ -30,7 +30,6 @@ class PluginUpdater
     {
         $this->slug = plugin_basename($this->pluginFile);
         $this->pluginData = get_plugin_data($this->pluginFile);
-        print_r($this->pluginData);
     }
 
     private function makeRequest($url)
