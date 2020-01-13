@@ -2,7 +2,7 @@
 /*
 Plugin Name: Better Browser
 Description: Add front-end notification bar for visitors using IE.
-Version: 0.4.3
+Version: 0.4.4
 Author: Pepijn Nichting | G R A V I T Y
 Text Domain: betterbrowser
 Domain Path: /languages
@@ -15,6 +15,10 @@ if (!class_exists('BetterBrowser')) {
     {
         function __construct()
         {
+            if( !class_exists('acf') ) {
+                exit();
+            }
+
             // Set Plugin Path
             $this->pluginPath = dirname(__FILE__);
             $path_array = explode('/wp-content/', $this->pluginPath);
@@ -23,10 +27,7 @@ if (!class_exists('BetterBrowser')) {
             // Set Plugin URL
             $this->pluginUrl = content_url($this->pluginRelPath);
 
-            add_filter('acf/settings/load_json', [$this, 'betterbrowser_acf_load_json'], 20); // make sure no get_field() gets called before this hook or else it wont work.
-            add_action('acf/update_field_group', [$this, 'betterbrowser_acf_update_field_group'], 1, 1);
-
-            add_action('init', [$this, 'betterbrowser_add_acf_options_page']);
+            add_action('plugins_loaded', [$this, 'betterbrowser_add_acf_options_page']);
 
             // Set browsers array (must be dont after load_json hook)
             $this->browsers = get_field('browsers', 'options');
@@ -89,6 +90,9 @@ if (!class_exists('BetterBrowser')) {
         // Add a options page to the admin area
         function betterbrowser_add_acf_options_page()
         {
+            add_filter('acf/settings/load_json', [$this, 'betterbrowser_acf_load_json'], 20); // make sure no get_field() gets called before this hook or else it wont work.
+            add_action('acf/update_field_group', [$this, 'betterbrowser_acf_update_field_group'], 1, 1);
+
             if (function_exists('acf_add_options_page')) {
                 //wp_die( 'pffffff!' );
                 acf_add_options_page([
