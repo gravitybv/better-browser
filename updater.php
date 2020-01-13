@@ -3,6 +3,12 @@ namespace BetterBrowser\BitbucketWpUpdater;
 // gebaseerd op:https://github.com/maneuver-agency/bitbucket-wp-updater/blob/master/src/PluginUpdater.php
 // dit is mischien een mooiere manier: https://appsaloon.be/blog/wordpress-plugin-updater-via-bitbucket-api-tutorial/
 
+/*
+Version: 0.1.0
+Author: Pepijn Nichting | G R A V I T Y
+Author URI: https://gravity.nl
+*/
+
 class PluginUpdater
 {
     private $slug;

@@ -2,8 +2,8 @@
 /*
 Plugin Name: Better Browser
 Description: Add front-end notification bar for visitors using IE.
-Version: 0.4.2
-Author: Pepijn Nichting
+Version: 0.4.3
+Author: Pepijn Nichting | G R A V I T Y
 Text Domain: betterbrowser
 Domain Path: /languages
 
