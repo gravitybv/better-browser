@@ -2,7 +2,7 @@
 /*
 Plugin Name: Better Browser
 Description: Add front-end notification bar for visitors using IE.
-Version: 0.4.5
+Version: 1.0.0
 Author: Pepijn Nichting | G R A V I T Y
 Text Domain: betterbrowser
 Domain Path: /languages
@@ -181,10 +181,13 @@ if (!class_exists('BetterBrowser')) {
 
     new BetterBrowser();
 
-    require('updater.php');
-    $repo = 'ionlinenl/better-browser';             // name of your repository. This is either "<user>/<repo>" or "<team>/<repo>".
-    $bitbucket_username = 'pepijnnichting';         // your personal BitBucket username
-    $bitbucket_app_pass = '98FcvBxa8tbzJPkfCrag';   // the generated app password with read access
 
-    new \BetterBrowser\BitbucketWpUpdater\PluginUpdater(__FILE__, $repo, $bitbucket_username, $bitbucket_app_pass);
+    if( ! class_exists( 'PluginUpdater' ) ){
+        include_once('updater.php');
+    }
+
+    $updater = new \GithubWpUpdater\PluginUpdater(__FILE__); // instantiate our class
+    $updater->set_username('gravitybv'); // set username
+    $updater->set_repository('better-browser'); // set repo
+    $updater->initialize(); // initialize the updater
 }
