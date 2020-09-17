@@ -21,7 +21,7 @@ if (!class_exists('BetterBrowser')) {
 
             // Set Plugin Path
             $this->pluginPath = dirname(__FILE__);
-            $path_array = explode('/wp-content/', $this->pluginPath);
+            $path_array = explode(WP_CONTENT_DIR, $this->pluginPath);
             $this->pluginRelPath = end($path_array);
 
             // Set Plugin URL
