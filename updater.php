@@ -1,6 +1,6 @@
 <?php
 
-namespace GithubWpUpdater;
+namespace BetterBrowser\GithubWpUpdater;
 
 /*
 Version: 0.2.1
