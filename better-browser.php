@@ -186,7 +186,7 @@ if (!class_exists('BetterBrowser')) {
         include_once('updater.php');
     }
 
-    $updater = new \GithubWpUpdater\PluginUpdater(__FILE__); // instantiate our class
+    $updater = new \BetterBrowser\GithubWpUpdater\PluginUpdater(__FILE__); // instantiate our class
     $updater->set_username('gravitybv'); // set username
     $updater->set_repository('better-browser'); // set repo
     $updater->initialize(); // initialize the updater
